@@ -1,18 +1,17 @@
 import React from 'react'
-import { useState } from 'react';
+import { useContext } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-//import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import '../components/Styles/CreateJobComponent.scss'
 import Select from '@mui/material/Select';
-
+import { JobTrackingContext } from '../JobTrackingContext';
+import { bgcolor } from '@mui/system';
 
 export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -53,28 +52,31 @@ export const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 
 
-
 function CreateJobComponent() {
 
+  const {inputValue,handleChange,handleClick,choose,handleChooseChange} = useContext(JobTrackingContext);
 
-  const [age, setAge] = useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  }
+  
 
+ 
 
+  
+
+  
+  
+  
 
   return (
     <div>
       <h3>Create New Job</h3>
 
-      <Box display='flex' direction="row" alignItems="center"    >
+      <Box display='flex' direction="row" alignItems="center" >
         <FormControl sx={{ width: 720 }} variant="standard">
 
           <InputLabel shrink htmlFor="bootstrap-input">
             Job Name
           </InputLabel>
-          <BootstrapInput id="bootstrap-input" />
+          <BootstrapInput value={inputValue} onChange={handleChange} id="bootstrap-input" />
 
         </FormControl>
 
@@ -83,24 +85,24 @@ function CreateJobComponent() {
           <Select
             labelId="demo-customized-select-label"
             id="demo-customized-select"
-            value={age}
+            value={choose}
             displayEmpty
-            onChange={handleChange}
+            onChange={handleChooseChange}
             input={<BootstrapInput />}
           >
             <MenuItem value="">
               <em >Choose</em>
             </MenuItem>
-            <MenuItem value={10}>Urgent</MenuItem>
-            <MenuItem value={20}>Regular</MenuItem>
-            <MenuItem value={30}>Trivial</MenuItem>
+            <MenuItem id='urgent' value='Urgent' >Urgent</MenuItem>
+            <MenuItem id='regular' value='Regular'>Regular</MenuItem>
+            <MenuItem id='trivial' value='Trivial'>Trivial</MenuItem>
           </Select>
 
 
         </FormControl>
 
         <FormControl sx={{ height: 45 }}>
-          <Button startIcon={<AddOutlinedIcon />} variant="contained">Create</Button>
+          <Button startIcon={<AddOutlinedIcon />} variant="contained" onClick={handleClick}>Create</Button>
         </FormControl>
 
 
