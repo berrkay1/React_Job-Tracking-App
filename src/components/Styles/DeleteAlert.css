@@ -1,0 +1,27 @@
+.alert-delete {
+  z-index: 9999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.alert-delete .alert {
+  background-color: #fff;
+  width: 30%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=DeleteAlert.css.map */

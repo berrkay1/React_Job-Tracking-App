@@ -51,14 +51,10 @@ export const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 function JobList() {
 
-    const {name} = useContext(JobTrackingContext);
+    const {handleChangeee,age, setAge} = useContext(JobTrackingContext);
 
     
 
-    const [age, setAge] = useState('');
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    }
 
     return (
         <>
@@ -76,11 +72,11 @@ function JobList() {
                         labelId="joblist-customized-select-label"
                         id="joblist-customized-select"
                         value={age}
-                        onChange={handleChange}
+                        onChange={handleChangeee}
                         displayEmpty
                         input={<BootstrapInput />}
                     >
-                        <MenuItem value="">
+                        <MenuItem value={0}>
                             <em >Priority (all)</em>
                         </MenuItem>
                         <MenuItem value={10}>Urgent</MenuItem>

@@ -7,6 +7,9 @@ import CreateJobComponent from './components/CreateJobComponent';
 import JobList from './components/JobList';
 import JobTable from './components/JobTable';
 
+
+
+
 function App() {
   return (
    <>
@@ -16,6 +19,7 @@ function App() {
           <CreateJobComponent/>
           <JobList/>
           <JobTable/>
+          
         </Container>
       </CssBaseline>
    </>

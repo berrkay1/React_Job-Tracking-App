@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import '../components/Styles/JobTable.scss'
 
 // icons
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,6 +15,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import { JobTrackingContext } from '../JobTrackingContext';
 import { useContext } from 'react';
+import DeleteAlert from '../Alert/DeleteAlert';
+import EditAlert from '../Alert/EditAlert';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,7 +31,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:hover': {
         backgroundColor: theme.palette.action.hover,
-        
+
     },
     // hide last border
     '&:last-child td, &:last-child th': {
@@ -37,24 +40,43 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-
-// function createData(name, calories, fat, carbs, protein) {
-//     return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//     createData('Eclair', 262, 16.0, 24, 6.0),
-//     createData('Cupcake', 305, 3.7, 67, 4.3),
-//     createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
-
 function JobTable() {
 
-    const {value,chooseValue} = useContext(JobTrackingContext);
+    const { state, model, setModel,edit,setEdit,handleChangeee,age, setAge } = useContext(JobTrackingContext);
 
-    
+    const filterEmployee = (age) => {
+        if(age){
+            if(age == 10) {
+                state.forEach(item => {
+                    if(item.section == "Urgent"){
+                        return "block";
+                    }else {
+                        return "none";
+                    }
+                });
+            }
+            else if(age == 20) {
+                state.forEach(item => {
+                    if(item.section == "Regular"){
+                        return "block";
+                    }else {
+                        return "none";
+                    }
+                });
+            }
+            else if(age == 30) {
+                state.forEach(item => {
+                    if(item.section == "Trivial"){
+                        return "block";
+                    }else {
+                        return "none";
+                    }
+                });
+            }
+        }
+    }
+
+    filterEmployee(age);
 
     return (
         <div>
@@ -69,20 +91,31 @@ function JobTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    <StyledTableRow >
-                                <StyledTableCell align='start' component="th" scope="row">
-                                    {value}
+                        {state.map(item => (
+                            <StyledTableRow  key={item.id}>
+
+                                <StyledTableCell align='start'  >
+                                  <div  >{item.text}</div>  
                                 </StyledTableCell>
-                                <StyledTableCell align='center' >
-                                    {chooseValue}
+                                <StyledTableCell align='center' width='60px' >
+                                   <div className={item.section}>{item.section}</div> 
                                 </StyledTableCell>
+                                
                                 <StyledTableCell align='center'>
-                                    
-                                    <EditIcon sx={{cursor:'pointer',marginRight:1.5,fontSize:30, bgcolor:'#cdcdcd',padding:0.4,borderRadius:1}}/>
-                                    <DeleteIcon sx={{cursor:'pointer',bgcolor:'#cdcdcd',padding:0.4,fontSize:30,borderRadius:1}} />
+                                    <EditIcon onClick={() => setEdit(true)} sx={{ cursor: 'pointer', marginRight: 1.5, fontSize: 30, bgcolor: '#cdcdcd', padding: 0.4, borderRadius: 1 }} />
+                                    <DeleteIcon onClick={() => setModel(true)} sx={{ cursor: 'pointer', bgcolor: '#cdcdcd', padding: 0.4, fontSize: 30, borderRadius: 1 }} />
                                 </StyledTableCell>
 
+                                {model && <DeleteAlert 
+                                    itemid={item}
+                                />}
+                                {edit && <EditAlert
+                                    
+                                />}
+
                             </StyledTableRow>
+                        ))}
+
                     </TableBody>
                 </Table>
             </TableContainer>

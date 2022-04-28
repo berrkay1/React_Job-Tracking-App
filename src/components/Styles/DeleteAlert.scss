@@ -1,0 +1,22 @@
+.alert-delete{
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .alert{
+        background-color: #fff;
+        width: 30%;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+    }
+}
+
+
+

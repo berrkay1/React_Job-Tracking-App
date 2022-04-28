@@ -1,0 +1,21 @@
+.Urgent {
+  background-color: palevioletred;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.Regular {
+  background-color: #ffd044;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.Trivial {
+  background-color: #4c4cfc;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=JobTable.css.map */
