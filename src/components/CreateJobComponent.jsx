@@ -11,7 +11,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import '../components/Styles/CreateJobComponent.scss'
 import Select from '@mui/material/Select';
 import { JobTrackingContext } from '../JobTrackingContext';
-import { bgcolor } from '@mui/system';
+
 
 export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -56,15 +56,7 @@ function CreateJobComponent() {
 
   const {inputValue,handleChange,handleClick,choose,handleChooseChange} = useContext(JobTrackingContext);
 
-  
 
- 
-
-  
-
-  
-  
-  
 
   return (
     <div>
@@ -84,18 +76,18 @@ function CreateJobComponent() {
           <InputLabel id="demo-customized-select-label">Job Priority</InputLabel>
           <Select
             labelId="demo-customized-select-label"
-            id="demo-customized-select"
+            id="demo-customized-select-label"
             value={choose}
             displayEmpty
             onChange={handleChooseChange}
             input={<BootstrapInput />}
           >
-            <MenuItem value="">
+            <MenuItem  value="">
               <em >Choose</em>
             </MenuItem>
-            <MenuItem id='urgent' value='Urgent' >Urgent</MenuItem>
-            <MenuItem id='regular' value='Regular'>Regular</MenuItem>
-            <MenuItem id='trivial' value='Trivial'>Trivial</MenuItem>
+            <MenuItem data-value="10" value='Urgent' >Urgent</MenuItem>
+            <MenuItem data-value="20" value='Regular'>Regular</MenuItem>
+            <MenuItem data-value="30" value='Trivial'>Trivial</MenuItem>
           </Select>
 
 
